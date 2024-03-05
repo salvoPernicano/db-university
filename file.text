@@ -8,8 +8,8 @@ WHERE `cfu` > 10;
 
 SELECT *
 FROM `students`
-WHERE `date_of_birth` < '1989-01-01'
-ORDER BY `date_of_birth` DESC
+WHERE TIMESTAMPDIFF(YEAR, `year_of_birth`, CURDATE()) > 30
+ORDER BY `date_of_birth` DESC;
 
 SELECT *
 FROM `courses`
@@ -40,8 +40,9 @@ SELECT COUNT(`name`), `office_address` AS `indirizzo_ufficio`
 FROM `teachers`
 GROUP BY `indirizzo_ufficio`;
 
-SELECT AVG(`vote`)
-FROM `exam_student`;
+SELECT `exam_id`, AVG(`vote`)
+FROM `exam_student`
+GROUP BY `exam_id`;
 
 SELECT COUNT(`id`) AS `Numero_corsi`, `department_id` as `id_dipartimento`
 FROM `degrees`
