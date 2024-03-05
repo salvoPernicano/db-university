@@ -3,3 +3,28 @@ FROM `students`
 JOIN `degrees`
 ON `students`.`degree_id` = `degrees`.`id`
 WHERE `degrees`.`name` = "Corso di Laurea in Economia";
+
+SELECT `degrees`.`name`, `degrees`.`level`, `departments`.`id` AS "id_dipartimento"
+FROM `degrees`
+JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`
+WHERE `departments`.`name` = "Dipartimento di Neuroscienze"
+AND `degrees`.`level` = "magistrale";
+
+SELECT `courses`.`id`,`courses`.`name`, `courses`.`description`, `course_teacher`.`teacher_id`
+FROM `course_teacher`
+JOIN `courses`
+ON `course_teacher`.`teacher_id` = `courses`.`id`
+WHERE `course_teacher`.`teacher_id` = 44;
+
+SELECT   
+`students`.`name`,
+`students`.`surname`,
+`degrees`.`name`AS "corso_di_laurea",
+`departments`.`name`AS "dipartimento"
+FROM `students`
+JOIN `degrees`
+ON `students`.`degree_id` = `degrees`.`id`
+JOIN `departments`
+ON `departments`.`id` = `degrees`.`department_id`
+ORDER BY `students`.`name` ASC,`students`.`surname` ASC;
