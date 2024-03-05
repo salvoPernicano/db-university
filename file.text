@@ -47,3 +47,12 @@ GROUP BY `exam_id`;
 SELECT COUNT(`id`) AS `Numero_corsi`, `department_id` as `id_dipartimento`
 FROM `degrees`
 GROUP BY `id_dipartimento`;
+
+SELECT COUNT(`exams`.`id`) AS "numero_tentativi", MAX(`exam_student`.`vote`) AS `voto_massimo`, `students`.`name`,`students`.`surname`
+FROM `students`
+JOIN `exam_student`
+ON `students`.`id` = `exam_student`.`student_id`
+JOIN `exams`
+ON `exams`.`id` = `exam_student`.`exam_id`
+WHERE `exam_student`.`vote` > 18
+GROUP BY `students`.`name`, `students`.`surname`;
